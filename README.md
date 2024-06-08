@@ -7,7 +7,7 @@ Modeling and simulations and  for 2024 Euro Cup and Copa America. A write up of 
 
 * __fit_model.R:__ Estimates Bayesian bivariate Poisson model. For more details, see Equation (2) of [Benz and Lopez, 2021](https://arxiv.org/abs/2012.14949), or the breakdown [on my website](https://lukebenz.com/post/intl_soccer_2024/).
 
-For working with the model coefficients, check out the file __data/ratings.csv__, with constants 
+For working with the model coefficients, check out the file __predictions/ratings.csv__, with constants 
 
 ```
 home_field = 0.3300421
