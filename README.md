@@ -32,6 +32,6 @@ Flag figures courtesy of [Flaticon](https://www.flaticon.com/).
 
 
 #### Pre-Tournament Predictions
-![sim-results](figures/euro_2024.png)
+![sim-results](figures/euro/euro_2024.png)
 
-![sim-results](figures/copa_2024.png)
+![sim-results](figures/copa/copa_2024.png)
