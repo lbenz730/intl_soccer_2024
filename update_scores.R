@@ -2,16 +2,16 @@ library(XML)
 library(RCurl)
 library(tidyverse)
 
-get_scores <- function(date) {
+get_scores <- function(date, league) {
   date_ <- gsub('-', '', date)
-  url <- paste0('https://www.espn.com/soccer/fixtures/_/date/', date_, '/league/uefa.euro')
+  url <- paste0('https://www.espn.com/soccer/fixtures/_/date/', date_, '/league/', league)
   scores <- readHTMLTable(getURL(url))[[1]]
   penalties_ix <- 1 + which(str_detect(scores$result, 'FT-Pens'))
   penalties_winners <- gsub('\\s+win.*', '', scores$match[penalties_ix])
   df <- 
     tibble('date' = as.Date(date_, '%Y%m%d'),
-           'team1' = gsub( '\\s[A-Z]+\\d+.*$', '', scores[,1]),
-           'team2' = gsub( '\\s[A-Z]+$', '', scores[,2]),
+           'team1' = gsub('.*\\s+v\\s+..', '', gsub( '\\s[A-Z]+\\d+.*$', '', scores[,1])),
+           'team2' = gsub('.*\\s+v\\s+..', '', gsub( '\\s[A-Z]+$', '', scores[,2])),
            'team1_score' = as.numeric(str_extract(scores[,1], '\\d+') ),
            'team2_score' = as.numeric(str_extract(scores[,1], '\\d+$') ),
            'shootout_winner' = NA) %>% 
@@ -30,13 +30,14 @@ get_scores <- function(date) {
   
 }
 
+### Euro 2024 ###
 ### Read In Schedule
 schedule <- 
-  read_csv('data/schedule.csv') %>% 
+  read_csv('data/euro2024_schedule.csv') %>% 
   mutate('date' = as.Date(date, '%m/%d/%y'))
 
 ### Get Scores for Tournament
-scores <- map_dfr(seq.Date(as.Date('2021-06-11'), Sys.Date(), 1), get_scores)
+scores <- map_dfr(seq.Date(as.Date('2024-06-14'), max(as.Date('2024-06-14'), Sys.Date()), 1), ~get_scores(.x, 'uefa.euro'))
 
 ### Update Scores
 schedule <- 
@@ -46,5 +47,24 @@ schedule <-
   left_join(scores, by = c("date", "team1", "team2"))
 
 ### Save Results
-write_csv(schedule, 'data/schedule.csv')
+write_csv(schedule, 'data/euro2024_schedule.csv')
+
+### Copa America 2024 ###
+### Read In Schedule
+schedule <- 
+  read_csv('data/copa2024_schedule.csv') %>% 
+  mutate('date' = as.Date(date, '%m/%d/%y'))
+
+### Get Scores for Tournament
+scores <- map_dfr(seq.Date(as.Date('2024-06-20'), max(as.Date('2024-06-20'), Sys.Date()), 1), ~get_scores(.x, 'conmebol.america'))
+
+### Update Scores
+schedule <- 
+  schedule %>% 
+  select(-contains('score'),
+         -contains('shootout_winner')) %>% 
+  left_join(scores, by = c("date", "team1", "team2"))
+
+### Save Results
+write_csv(schedule, 'data/copa2024_schedule.csv')
 

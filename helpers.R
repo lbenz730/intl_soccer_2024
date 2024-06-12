@@ -382,3 +382,17 @@ match_probs_ko <- function(lambda_1, lambda_2) {
   
   return(list('win_ko' = win, 'loss_ko' = loss))
 }
+
+### Custom ggplot theme
+theme_set(theme_bw() + 
+            theme(plot.title = element_text(size = 24, hjust = 0.5),
+                  axis.title = element_text(size = 16),
+                  axis.text = element_text(size = 12),
+                  plot.subtitle = element_text(size = 20, hjust = 0.5),
+                  strip.text = element_text(size = 14, hjust = 0.5),
+                  legend.position = "none")
+)
+
+transparent <- function(img) {
+  magick::image_fx(img, expression = "0.5*a", channel = "alpha")
+}
