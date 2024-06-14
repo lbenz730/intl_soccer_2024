@@ -8,7 +8,8 @@ if(as.character(Sys.Date()) %in% c('2024-06-18')) {
 }
 
 ### Run Simulations
-source('run_sim.R')
+source('euro_sim.R')
+source('copa_sim.R')
 
 ### Make Tables
 source('make_table.R')

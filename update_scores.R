@@ -8,12 +8,12 @@ get_scores <- function(date, league) {
   scores <- readHTMLTable(getURL(url))[[1]]
   penalties_ix <- 1 + which(str_detect(scores$result, 'FT-Pens'))
   penalties_winners <- gsub('\\s+win.*', '', scores$match[penalties_ix])
-  df <- 
+  df <-
     tibble('date' = as.Date(date_, '%Y%m%d'),
-           'team1' = gsub('.*\\s+v\\s+..', '', gsub( '\\s[A-Z]+\\d+.*$', '', scores[,1])),
-           'team2' = gsub('.*\\s+v\\s+..', '', gsub( '\\s[A-Z]+$', '', scores[,2])),
-           'team1_score' = as.numeric(str_extract(scores[,1], '\\d+') ),
-           'team2_score' = as.numeric(str_extract(scores[,1], '\\d+$') ),
+           'team1_score' = as.numeric(str_extract_all(scores[,2], '\\d+')[[1]][1] ),
+           'team2_score' = as.numeric(str_extract_all(scores[,2], '\\d+')[[1]][2] ),
+           'team1' = gsub('.*\\s+.\\s+..', '', gsub( '\\s[A-Z]+\\d+.*$', '', scores[,1])),
+           'team2' = gsub('.*\\s+.\\s+..', '', gsub( '\\s[A-Z]+$', '', scores[,2])),
            'shootout_winner' = NA) %>% 
     slice(setdiff(1:nrow(.), penalties_ix))
   
