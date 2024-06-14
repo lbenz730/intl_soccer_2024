@@ -374,7 +374,7 @@ t1c <-
   
   ### Colors
   data_color(columns = c(lambda_1, lambda_2),
-             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds[, c('lambda_1', 'lambda_2')]))) %>% 
+             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds_c[, c('lambda_1', 'lambda_2')]))) %>% 
   data_color(columns = c(win, loss, draw),
              colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = c(0, 1))) %>% 
   ### Borders
@@ -455,7 +455,7 @@ t1c <-
 gtExtras::gtsave_extra(t1c, 'figures/copa/matchweek1.png')
 
 t2c <-
-  df_preds %>% 
+  df_preds_c %>% 
   slice(9:16) %>% 
   gt() %>% 
   cols_align('center') %>% 
@@ -466,7 +466,7 @@ t2c <-
   
   ### Colors
   data_color(columns = c(lambda_1, lambda_2),
-             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds[, c('lambda_1', 'lambda_2')]))) %>% 
+             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds_c[, c('lambda_1', 'lambda_2')]))) %>% 
   data_color(columns = c(win, loss, draw),
              colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = c(0, 1))) %>% 
   ### Borders
@@ -549,7 +549,7 @@ gtExtras::gtsave_extra(t2c, 'figures/copa/matchweek2.png')
 
 
 t3c <-
-  df_preds %>% 
+  df_preds_c %>% 
   slice(17:24) %>% 
   gt() %>% 
   cols_align('center') %>% 
@@ -560,7 +560,7 @@ t3c <-
   
   ### Colors
   data_color(columns = c(lambda_1, lambda_2),
-             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds[, c('lambda_1', 'lambda_2')]))) %>% 
+             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds_c[, c('lambda_1', 'lambda_2')]))) %>% 
   data_color(columns = c(win, loss, draw),
              colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = c(0, 1))) %>% 
   ### Borders
