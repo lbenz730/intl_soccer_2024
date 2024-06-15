@@ -8,10 +8,8 @@ source('helpers.R')
 ### Simulation Parameters
 n_sims <- 10000
 set.seed(12345)
-run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
+run_date <- case_when(lubridate::hour(Sys.time()) <= 10 ~as.Date(Sys.Date()-1),
                       T ~ as.Date(Sys.Date() ))
-
-run_date <- Sys.Date()
 
 ### Coefficients
 posterior <- read_rds('model_objects/posterior.rds')
@@ -23,8 +21,8 @@ mu <- mean(posterior$mu)
 df_ratings <- read_csv('predictions/ratings.csv')
 schedule <- 
   read_csv('data/euro2024_schedule.csv') %>% 
-  mutate('team1_score' = ifelse(date >= run_date, NA, team1_score),
-         'team2_score' = ifelse(date >= run_date, NA, team2_score)) %>% 
+  mutate('team1_score' = ifelse(date > run_date, NA, team1_score),
+         'team2_score' = ifelse(date > run_date, NA, team2_score)) %>% 
   mutate('team1_score' = case_when(is.na(shootout_winner) ~ team1_score,
                                    shootout_winner == team1 ~ 0.1 + team1_score,
                                    shootout_winner == team2 ~ -0.1 + team1_score))
