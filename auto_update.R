@@ -9,7 +9,9 @@ if(as.character(Sys.Date()) %in% c('2024-06-18')) {
 
 ### Run Simulations
 source('euro_sim.R')
-source('copa_sim.R')
+if(Sys.Date() > '2024-06-18') {
+  source('copa_sim.R')
+}
 
 ### Make Tables
 source('make_table.R')

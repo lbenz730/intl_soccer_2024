@@ -10,8 +10,8 @@ get_scores <- function(date, league) {
   penalties_winners <- gsub('\\s+win.*', '', scores$match[penalties_ix])
   df <-
     tibble('date' = as.Date(date_, '%Y%m%d'),
-           'team1_score' = as.numeric(str_extract_all(scores[,2], '\\d+')[[1]][1] ),
-           'team2_score' = as.numeric(str_extract_all(scores[,2], '\\d+')[[1]][2] ),
+           'team1_score' = map_dbl(str_extract_all(scores[,2], '\\d+'), ~as.numeric(.x[1]) ),
+           'team2_score' = map_dbl(str_extract_all(scores[,2], '\\d+'), ~as.numeric(.x[2]) ),
            'team1' = gsub('.*\\s+.\\s+..', '', gsub( '\\s[A-Z]+\\d+.*$', '', scores[,1])),
            'team2' = gsub('.*\\s+.\\s+..', '', gsub( '\\s[A-Z]+$', '', scores[,2])),
            'shootout_winner' = NA) %>% 
