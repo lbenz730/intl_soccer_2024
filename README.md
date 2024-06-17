@@ -17,7 +17,8 @@ mu = -0.06282729
 
 #### Simulations
 
-* __euro_sim.R:__ Run 10,000 simulations of the tournament
+* __euro_sim.R:__ Run 10,000 simulations of the Euro Cup tournament
+* __copa_sim.R:__ Run 10,000 simulations of the Copa America tournament
 * __helpers.R:__ Helper functions for sims.
 * __game_preds.R__ Save out predictions for individual games.
 * __graphics.R__: Script for plotting graphics related to tournament advancement history

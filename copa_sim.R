@@ -11,6 +11,8 @@ set.seed(12345)
 run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
                       T ~ as.Date(Sys.Date() ))
 
+run_date <- as.Date('2024-06-19')
+
 
 ### Coefficients
 posterior <- read_rds('model_objects/posterior.rds')
