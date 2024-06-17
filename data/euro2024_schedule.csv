@@ -6,9 +6,9 @@ date,team1,team2,location,group,ko_round,team1_score,team2_score,shootout_winner
 2024-06-16,Slovenia,Denmark,Germany,C,NA,1,1,NA
 2024-06-16,Serbia,England,Germany,C,NA,0,1,NA
 2024-06-16,Poland,Netherlands,Germany,D,NA,1,2,NA
-2024-06-17,Austria,France,Germany,D,NA,NA,NA,NA
-2024-06-17,Romania,Ukraine,Germany,E,NA,NA,NA,NA
-2024-06-17,Belgium,Slovakia,Germany,E,NA,NA,NA,NA
+2024-06-17,Austria,France,Germany,D,NA,0,1,NA
+2024-06-17,Romania,Ukraine,Germany,E,NA,3,0,NA
+2024-06-17,Belgium,Slovakia,Germany,E,NA,0,1,NA
 2024-06-18,Turkey,Georgia,Germany,F,NA,NA,NA,NA
 2024-06-18,Portugal,Czechia,Germany,F,NA,NA,NA,NA
 2024-06-19,Germany,Hungary,Germany,A,NA,NA,NA,NA
