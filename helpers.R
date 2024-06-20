@@ -320,7 +320,7 @@ build_knockout_bracket <- function(group_stage_results, euro = T) {
                     third_place_groups == 'CDEF' ~ c[3])
     
     return(tibble('team1' = c(b[1], a[1], f[1], d[2], e[1], d[1], c[1], a[2]),
-                  'team2' = c(t1, c[2], t2, e[2], t3, f[2], t4, b[2])))
+                  'team2' = c(t1, c[2], t4, e[2], t3, f[2], t2, b[2])))
     
   } else {
     return(tibble('team1' = c(a[1], b[1], c[1], d[1]),

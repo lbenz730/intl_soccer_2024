@@ -160,5 +160,3 @@ read_csv('predictions/euro_third_place.csv') %>%
        title = 'Probability of Reaching Knockout Round\nFor Third Place Team',
        subtitle = 'Euro 2024')
 ggsave('figures/euro/thrid_place.png', height = 9/1.2, width = 16/1.2)
-
-
