@@ -16,7 +16,7 @@ df_scores <-
 euro_2024 <- 
   read_csv('data/euro2024_schedule.csv') %>% 
   mutate('neutral' = (team1 != location & team2 != location),
-         'tournament' = 'UEFA Euro') %>% 
+         'tournament' = 'European Championship') %>% 
   mutate('home_team' = ifelse(team2 == location, team2, team1),
          'away_team' = ifelse(team2 == location, team1, team2),
          'home_score' = ifelse(team2 == location, team2_score, team1_score),
