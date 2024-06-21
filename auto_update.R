@@ -9,7 +9,7 @@ if(as.character(Sys.Date()) %in% c('2024-06-18')) {
 
 ### Run Simulations
 source('euro_sim.R')
-if(Sys.Date() > '2024-06-18') {
+if(Sys.Date() > '2024-06-19') {
   source('copa_sim.R')
 }
 

@@ -24,6 +24,17 @@ euro_2024 <-
   select(date, home_team, away_team, home_score, away_score, neutral, tournament) %>% 
   filter(!is.na(home_score))
 
+copa_2024 <- 
+  read_csv('data/copa2024_schedule.csv') %>% 
+  mutate('neutral' = (team1 != location & team2 != location),
+         'tournament' = 'Copa America') %>% 
+  mutate('home_team' = ifelse(team2 == location, team2, team1),
+         'away_team' = ifelse(team2 == location, team1, team2),
+         'home_score' = ifelse(team2 == location, team2_score, team1_score),
+         'away_score' = ifelse(team2 == location, team1_score, team2_score)) %>% 
+  select(date, home_team, away_team, home_score, away_score, neutral, tournament) %>% 
+  filter(!is.na(home_score))
+
 ### Filter out games for countries that don't play at least 20 games
 keep <- 
   df_scores %>% 
@@ -39,7 +50,8 @@ df_scores <-
   df_scores %>% 
   semi_join(keep, by = c('home_team' = 'team')) %>% 
   semi_join(keep, by = c('away_team' = 'team')) %>%
-  bind_rows(euro_2024) #%>% bind_rows(copa_2024)
+  bind_rows(euro_2024) %>% 
+  bind_rows(copa_2024)
 
 ### Team IDs
 team_ids <- team_codes(df_scores)
