@@ -3,7 +3,7 @@ print(args)
 ### Update Scores
 source('update_scores.R')
 
-### Re-Fit Model After Each Round --> new preds
+## Re-Fit Model After Each Round --> new preds
 if(as.character(Sys.Date()) %in% c('2024-06-18', '2024-06-22')) {
   source('fit_model.R')
   source('game_preds.R')
