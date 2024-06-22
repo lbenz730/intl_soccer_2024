@@ -1,6 +1,7 @@
 ### Copa America 2024 Simulations
 library(tidyverse)
 library(furrr)
+library(arrow)
 options(dplyr.summarise.inform = F)
 plan(multisession(workers = 12))
 source('helpers.R')
@@ -10,9 +11,6 @@ n_sims <- 10000
 set.seed(12345)
 run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
                       T ~ as.Date(Sys.Date() ))
-
-run_date <- as.Date('2024-06-19')
-
 
 ### Coefficients
 posterior <- read_rds('model_objects/posterior.rds')

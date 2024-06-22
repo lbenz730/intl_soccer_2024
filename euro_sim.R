@@ -1,6 +1,7 @@
 ### Euro 2024 Simulations
 library(tidyverse)
 library(furrr)
+library(arrow)
 options(dplyr.summarise.inform = F)
 plan(multisession(workers = 12))
 source('helpers.R')

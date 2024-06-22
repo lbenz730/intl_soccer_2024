@@ -111,6 +111,14 @@ sim_group_stage <- function(df_group_stage, euro = T) {
                                     T ~ F))
   }
   
+  if(euro) {
+    write_parquet(standings, 'predictions/euro_sim_standings.parquet')
+    write_parquet(df_results, 'predictions/euro_sim_game_results.parquet')
+  } else {
+    write_parquet(standings, 'predictions/copa_sim_standings.parquet')
+    write_parquet(df_results, 'predictions/copa_sim_game_results.parquet')
+  }
+  
   return(standings)
   
 }
