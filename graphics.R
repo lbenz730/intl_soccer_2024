@@ -321,7 +321,6 @@ match3_plot <- function(group_, score_max, colors, euro = T) {
   
   if(!dir.exists('figures/euro/match3')) {
     dir.create('figures/euro/match3') 
-    dir.create('figures/copa/match3') 
   }
   
   if(euro) {
