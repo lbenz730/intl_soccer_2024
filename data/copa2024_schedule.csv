@@ -7,10 +7,10 @@ date,team1,team2,location,group,ko_round,team1_score,team2_score,shootout_winner
 2024-06-23,Uruguay,Panama,United States,C,NA,3,1,NA
 2024-06-24,Colombia,Paraguay,United States,D,NA,2,1,NA
 2024-06-24,Brazil,Costa Rica,United States,D,NA,0,0,NA
-2024-06-25,Peru,Canada,United States,A,NA,NA,NA,NA
-2024-06-25,Chile,Argentina,United States,A,NA,NA,NA,NA
-2024-06-26,Ecuador,Jamaica,United States,B,NA,NA,NA,NA
-2024-06-26,Venezuela,Mexico,United States,B,NA,NA,NA,NA
+2024-06-25,Peru,Canada,United States,A,NA,0,1,NA
+2024-06-25,Chile,Argentina,United States,A,NA,0,1,NA
+2024-06-26,Ecuador,Jamaica,United States,B,NA,3,1,NA
+2024-06-26,Venezuela,Mexico,United States,B,NA,1,0,NA
 2024-06-27,Panama,United States,United States,C,NA,NA,NA,NA
 2024-06-27,Uruguay,Bolivia,United States,C,NA,NA,NA,NA
 2024-06-28,Colombia,Costa Rica,United States,D,NA,NA,NA,NA
