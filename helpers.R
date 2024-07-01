@@ -402,5 +402,5 @@ theme_set(theme_bw() +
 )
 
 transparent <- function(img) {
-  magick::image_fx(img, expression = "0.5*a", channel = "alpha")
+  magick::image_fx(img, expression = "0.2*a", channel = "alpha")
 }

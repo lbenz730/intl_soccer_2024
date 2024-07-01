@@ -57,7 +57,13 @@ ggsave('figures/euro/exp_elim.png', height = 12/1.2, width = 16/1.2)
 ggplot(euro_history, aes(x = date, y = r16)) +
   facet_wrap(~paste('Group', group)) +
   geom_line(aes(group = team), col = 'black', alpha = 0.4) +
-  geom_image(aes(image = logo), size = 0.065) +
+  geom_image(data = filter(euro_history, !eliminated), 
+             aes(image = logo),
+             size = 0.085) + 
+  geom_image(data = filter(euro_history, eliminated), 
+             aes(image = logo),
+             image_fun = transparent, 
+             size = 0.085) + 
   scale_y_continuous(limits = c(0,1), labels = scales::percent) +
   labs(x = 'Date',
        y = 'Chances of Reaching Knockout Round',
@@ -68,7 +74,13 @@ ggsave('figures/euro/r16.png', height = 12/1.2, width = 16/1.2)
 ggplot(euro_history, aes(x = date, y = qf)) +
   facet_wrap(~paste('Group', group)) +
   geom_line(aes(group = team), col = 'black', alpha = 0.4) +
-  geom_image(aes(image = logo), size = 0.065) +
+  geom_image(data = filter(euro_history, !eliminated), 
+             aes(image = logo),
+             size = 0.085) + 
+  geom_image(data = filter(euro_history, eliminated), 
+             aes(image = logo),
+             image_fun = transparent, 
+             size = 0.085) + 
   scale_y_continuous(limits = c(0,1), labels = scales::percent) +
   labs(x = 'Date',
        y = 'Chances of Reaching Quarterfinals',
@@ -79,7 +91,13 @@ ggsave('figures/euro/qf.png', height = 12/1.2, width = 16/1.2)
 ggplot(euro_history, aes(x = date, y = sf)) +
   facet_wrap(~paste('Group', group)) +
   geom_line(aes(group = team), col = 'black', alpha = 0.4) +
-  geom_image(aes(image = logo), size = 0.065) +
+  geom_image(data = filter(euro_history, !eliminated), 
+             aes(image = logo),
+             size = 0.085) + 
+  geom_image(data = filter(euro_history, eliminated), 
+             aes(image = logo),
+             image_fun = transparent, 
+             size = 0.085) + 
   scale_y_continuous(limits = c(0,1), labels = scales::percent) +
   labs(x = 'Date',
        y = 'Chances of Reaching Semifinals',
@@ -91,7 +109,13 @@ ggsave('figures/euro/sf.png', height = 12/1.2, width = 16/1.2)
 ggplot(euro_history, aes(x = date, y = finals)) +
   facet_wrap(~paste('Group', group)) +
   geom_line(aes(group = team), col = 'black', alpha = 0.4) +
-  geom_image(aes(image = logo), size = 0.065) +
+  geom_image(data = filter(euro_history, !eliminated), 
+             aes(image = logo),
+             size = 0.085) + 
+  geom_image(data = filter(euro_history, eliminated), 
+             aes(image = logo),
+             image_fun = transparent, 
+             size = 0.085) + 
   scale_y_continuous(limits = c(0,1), labels = scales::percent) +
   labs(x = 'Date',
        y = 'Chances of Reaching Finals',
