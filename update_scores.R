@@ -2,23 +2,42 @@ library(XML)
 library(RCurl)
 library(tidyverse)
 
-get_scores <- function(date, league) {
+get_scores <- function(date, league, schedule) {
   date_ <- gsub('-', '', date)
   url <- paste0('https://www.espn.com/soccer/fixtures/_/date/', date_, '/league/', league)
   scores <- readHTMLTable(getURL(url))[[1]]
-  penalties_ix <- 1 + which(str_detect(scores$result, 'FT-Pens'))
-  penalties_winners <- gsub('\\s+win.*', '', scores$match[penalties_ix])
+  
+  penalties_ix <-  which(str_detect(scores$V3, 'FT-Pens'))
+  
   df <-
     tibble('date' = as.Date(date_, '%Y%m%d'),
            'team1_score' = map_dbl(str_extract_all(scores[,2], '\\d+'), ~as.numeric(.x[1]) ),
            'team2_score' = map_dbl(str_extract_all(scores[,2], '\\d+'), ~as.numeric(.x[2]) ),
            'team1' = gsub('.*\\s+.\\s+..', '', gsub( '\\s[A-Z]+\\d+.*$', '', scores[,1])),
            'team2' = gsub('.*\\s+.\\s+..', '', gsub( '\\s[A-Z]+$', '', scores[,2])),
-           'shootout_winner' = NA) %>% 
-    slice(setdiff(1:nrow(.), penalties_ix))
+           'shootout_winner' = NA) 
   
   if(length(penalties_ix) > 0) {
-    df$shootout_winner[penalties_ix-1] <- penalties_winners
+    tms <- unique(c(schedule$team1, schedule$team2))
+    tms <- tms[!is.na(tms)]
+    penalties_winners <- 
+      map_chr(scores$V1[penalties_ix], function(x) {
+        tms[map_lgl(tms, ~{
+          grepl(paste(.x, '(win|advance) \\d+-\\d+ on penalties'), x) |
+            grepl(paste(.x, '(win|advance) \\d+-\\d+ on penalties'), x)
+        })]
+      })
+    df$shootout_winner[penalties_ix] <- penalties_winners
+    
+    df$team1[penalties_ix] <- 
+      gsub('\\s+(win|advance) \\d+-\\d+ on penalties', '', df$team1[penalties_ix])
+    
+    for(t in tms) {
+      df$team1[penalties_ix] <- 
+        map_chr(df$team1[penalties_ix], ~ifelse(strsplit(.x, t)[[1]][1] == '', t, .x))
+    }
+    
+    
   }
   
   df <- bind_rows(df, select(df, date,
@@ -37,7 +56,7 @@ schedule <-
   mutate('date' = as.Date(date, '%m/%d/%y'))
 
 ### Get Scores for Tournament
-scores <- map_dfr(seq.Date(as.Date('2024-06-14'), max(as.Date('2024-06-14'), Sys.Date()), 1), ~get_scores(.x, 'uefa.euro'))
+scores <- map_dfr(seq.Date(as.Date('2024-06-14'), max(as.Date('2024-06-14'), Sys.Date()), 1), ~get_scores(.x, 'uefa.euro', schedule))
 
 ### Update Scores
 schedule <- 
@@ -56,7 +75,7 @@ schedule <-
   mutate('date' = as.Date(date, '%m/%d/%y'))
 
 ### Get Scores for Tournament
-scores <- map_dfr(seq.Date(as.Date('2024-06-20'), max(as.Date('2024-06-20'), Sys.Date()), 1), ~get_scores(.x, 'conmebol.america'))
+scores <- map_dfr(seq.Date(as.Date('2024-06-20'), max(as.Date('2024-06-20'), Sys.Date()), 1), ~get_scores(.x, 'conmebol.america', schedule))
 
 ### Update Scores
 schedule <- 
