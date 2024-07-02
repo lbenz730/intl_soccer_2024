@@ -19,8 +19,8 @@ date,team1,team2,location,group,ko_round,team1_score,team2_score,shootout_winner
 2024-06-29,Canada,Chile,United States,A,NA,0,0,NA
 2024-06-30,Jamaica,Venezuela,United States,B,NA,0,3,NA
 2024-06-30,Mexico,Ecuador,United States,B,NA,0,0,NA
-2024-07-01,Bolivia,Panama,United States,C,NA,NA,NA,NA
-2024-07-01,United States,Uruguay,United States,C,NA,NA,NA,NA
+2024-07-01,Bolivia,Panama,United States,C,NA,1,3,NA
+2024-07-01,United States,Uruguay,United States,C,NA,0,1,NA
 2024-07-02,Brazil,Colombia,United States,D,NA,NA,NA,NA
 2024-07-02,Costa Rica,Paraguay,United States,D,NA,NA,NA,NA
 2024-07-04,NA,NA,United States,NA,QF,NA,NA,NA
