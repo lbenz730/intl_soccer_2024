@@ -55,7 +55,7 @@ if(any(is.na(schedule$team1_score[1:24]))) {
   knockout_brackets <-
     future_map_dfr(1:n_sims, ~filter(schedule,  str_detect(ko_round, 'QF')), .id = 'sim_id')  %>% 
     mutate('sim_id' = as.numeric(sim_id))
-  gsr <- sim_group_stage(df_group_stage %>% mutate('sim_id' = 1)) %>% select(-sim_id)
+  gsr <- sim_group_stage(df_group_stage %>% mutate('sim_id' = 1), euro = F) %>% select(-sim_id)
   group_stage_results <- map_dfr(1:n_sims, ~mutate(gsr, 'sim_id' = .x))
 }
 
